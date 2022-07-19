@@ -9,18 +9,19 @@ import Loading from './Loading';
 
 import './style.scss';
 import {Routes, Route} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {loadRecipes} from "../../actions/recipes";
 
-function App(props) {
+function App() {
     const dispatch = useDispatch();
+    const loading = useSelector((state) => state.recipes.loading);
 
     useEffect(() => {
         dispatch(loadRecipes())
     },[]);
 
-    if (props.loading) {
+    if (loading) {
         return <Loading/>;
     }
     return (

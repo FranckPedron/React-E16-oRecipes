@@ -2,6 +2,7 @@ import {ADD_RECIPES} from "../actions/recipes";
 
 export const initialState = {
   list: [],
+  loading: true,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -11,6 +12,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         list: action.list,
+        loading: false
       };
 
     default:

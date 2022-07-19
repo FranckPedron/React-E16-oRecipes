@@ -20,7 +20,8 @@ describe('Recipes Reducer', () => {
             const result = reducer(currentState, action);
             expect(result).toEqual({
                 test: 123456789,
-                list: fakeRecipes
+                list: fakeRecipes,
+                loading: false
             });
         });
 
