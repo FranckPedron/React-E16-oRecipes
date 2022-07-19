@@ -1,5 +1,7 @@
 export const initialState = {
   logged: false,
+  email: '',
+  password: ''
 };
 
 const reducer = (state = initialState, action = {}) => {
