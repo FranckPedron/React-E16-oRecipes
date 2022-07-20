@@ -8,7 +8,7 @@ const Content = ({ title, text, recipes }) => (
   <section className="content">
     <h1 className="content-title">{title}</h1>
     <p className="content-text">{text}</p>
-    {recipes && (
+    {recipes?.length>0 && (
       <div className="content-list">
         {recipes.map((recipe) => (
           <Card key={recipe.id} {...recipe} />

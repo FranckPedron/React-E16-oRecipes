@@ -28,7 +28,7 @@ describe('Recipes selectors', () =>{
         });
 
         it ('should return a default title', () => {
-            expect(getTitleByRecipesNumber()).toBe('Découvrez nos recettes')
+            expect(getTitleByRecipesNumber()).toBe('Découvrez nos recettes du moment')
         });
 
         it ('should return a specific title for an empty list', () => {
@@ -40,7 +40,7 @@ describe('Recipes selectors', () =>{
         });
 
         it ('should return a specific title for several recipes', () => {
-            expect(getTitleByRecipesNumber([{recette:123}, {recette:123}])).toBe('Découvrez nos recettes')
+            expect(getTitleByRecipesNumber([{recette:123}, {recette:123}])).toBe('Découvrez nos recettes du moment')
         });
     });
 });
