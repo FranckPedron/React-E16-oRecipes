@@ -7,7 +7,7 @@ const Menu = () => {
 
     const recipes = useSelector((state) => state.recipes.list);
     const isLogged = useSelector((state) => state.user.logged);
-    const getClassnames = ({isActive}) => `menu-link ${isActive ? 'menu-link--active' : ''}`
+    const getClassnames = ({ isActive }) => `menu-link ${isActive ? 'menu-link--active' : ''}`;
     return (
         <nav className="menu">
             <NavLink

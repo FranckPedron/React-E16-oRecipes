@@ -20,3 +20,7 @@ export const changeField = (key, value) => ({
     key, value
 });
 
+export const CHECK_LOGGED = 'CHECK_LOGGED';
+export const checkLogged = () => ({
+    type: CHECK_LOGGED,
+});

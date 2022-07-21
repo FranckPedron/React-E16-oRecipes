@@ -13,15 +13,18 @@ import {Routes, Route} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {loadRecipes} from "../../actions/recipes";
+import {checkLogged} from "../../actions/user";
 
 function App() {
     const dispatch = useDispatch();
-    const loading = useSelector((state) => state.recipes.loading);
-    const isLogged = useSelector((state) => state.user.logged);
 
     useEffect(() => {
-        dispatch(loadRecipes())
+        dispatch(checkLogged());
+        dispatch(loadRecipes());
     }, []);
+
+    const loading = useSelector((state) => state.recipes.loading);
+    const isLogged = useSelector((state) => state.user.logged);
 
     if (loading) {
         return <Loading />;
