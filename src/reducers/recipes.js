@@ -1,7 +1,8 @@
-import {ADD_RECIPES} from "../actions/recipes";
+import {ADD_RECIPES, SAVE_FAVORITES} from "../actions/recipes";
 
 export const initialState = {
   list: [],
+  favorites: [],
   loading: true,
 };
 
@@ -13,6 +14,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         list: action.list,
         loading: false
+      };
+
+    case SAVE_FAVORITES:
+      return {
+        ...state,
+        favorites: action.favorites,
       };
 
     default:

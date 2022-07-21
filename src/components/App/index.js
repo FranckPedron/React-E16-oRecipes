@@ -4,6 +4,7 @@ import Menu from 'src/components/Menu';
 import Home from 'src/components/Home';
 import Recipe from 'src/components/Recipe';
 import Error from 'src/components/Error';
+import Fav from 'src/components/Fav';
 
 import Loading from './Loading';
 
@@ -16,10 +17,11 @@ import {loadRecipes} from "../../actions/recipes";
 function App() {
     const dispatch = useDispatch();
     const loading = useSelector((state) => state.recipes.loading);
+    const isLogged = useSelector((state) => state.user.logged);
 
     useEffect(() => {
         dispatch(loadRecipes())
-    },[]);
+    }, []);
 
     if (loading) {
         return <Loading/>;
@@ -29,6 +31,7 @@ function App() {
             <Menu/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
+                {isLogged && <Route path="/favorites" element={<Fav/>}/>}
                 <Route path="/recipe/:slug" element={<Recipe/>}/>
                 <Route path="*" element={<Error/>}/>
             </Routes>
