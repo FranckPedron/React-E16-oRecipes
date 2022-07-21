@@ -24,16 +24,17 @@ function App() {
     }, []);
 
     if (loading) {
-        return <Loading/>;
+        return <Loading />;
     }
     return (
         <div className="app">
             <Menu/>
             <Routes>
-                <Route path="/" element={<Home/>}/>
-                {isLogged && <Route path="/favorites" element={<Fav/>}/>}
-                <Route path="/recipe/:slug" element={<Recipe/>}/>
-                <Route path="*" element={<Error/>}/>
+                <Route path="/" element={<Home />}/>
+                {isLogged && <Route path="/favorites" element={<Fav />}/>}
+                {!isLogged && <Route path="/favorites" element={<Error message="Vous devez vous connecter pour accéder à la page demandée" />}/>}
+                <Route path="/recipe/:slug" element={<Recipe />}/>
+                <Route path="*" element={<Error message="La page demandée n'existe pas" />}/>
             </Routes>
         </div>
     );

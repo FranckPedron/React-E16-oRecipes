@@ -1,6 +1,6 @@
 import {addRecipes, GET_FAVORITES, LOAD_RECIPES, saveFavorites} from "../actions/recipes";
 import axios from "axios";
-import {LOGIN, saveUser} from "../actions/user";
+import {LOGIN, LOGOUT, saveUser} from "../actions/user";
 
 const instance = axios.create({
     baseURL: 'http://localhost:3001'
@@ -19,7 +19,6 @@ const apiMW = (store) => (next) => (action) => {
                 }
             };
             loadData();
-            next(action);
             break;
 
         case LOGIN:
@@ -38,9 +37,11 @@ const apiMW = (store) => (next) => (action) => {
                     console.error(e);
                 }
             };
-
             logUser();
-            next(action);
+            break;
+
+        case LOGOUT:
+            delete instance.defaults.headers.common.Authorization;
             break;
 
         case GET_FAVORITES:

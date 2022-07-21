@@ -1,15 +1,19 @@
 import Page from 'src/components/Page';
 import AppHeader from 'src/components/AppHeader';
 import Content from 'src/components/Content';
+import PropTypes from "prop-types";
 
-const Error = () => (
-  <Page>
-    <AppHeader />
-    <Content
-      title="Erreur"
-      text="Nous sommes désolé, Une erreur s'est produite."
-    />
-  </Page>
+const Error = ({message}) => (
+    <Page>
+        <AppHeader/>
+        <Content
+            title="Erreur"
+            text={message}
+        />
+    </Page>
 );
 
+Error.propTypes = {
+    message: PropTypes.string.isRequired,
+}
 export default Error;
