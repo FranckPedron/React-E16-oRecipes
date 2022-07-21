@@ -2,12 +2,16 @@ import {addRecipes, LOAD_RECIPES} from "../actions/recipes";
 import axios from "axios";
 import {LOGIN, saveUser} from "../actions/user";
 
+const instance = axios.create({
+    baseURL: 'http://localhost:3001'
+});
+
 const apiMW = (store) => (next) => (action) =>{
     switch (action.type) {
         case LOAD_RECIPES:
         const loadData = async () => {
            try {
-                const response = await axios.get('http://localhost:3001/recipes');
+                const response = await instance.get('/recipes');
                 const recipes = response.data;
                 store.dispatch(addRecipes(recipes));
             }
@@ -23,11 +27,13 @@ const apiMW = (store) => (next) => (action) =>{
             const state = store.getState();
             const logUser = async () => {
                 try{
-                    const response = await axios.post('http://localhost:3001/login', {
+                    const response = await instance.post('/login', {
                         email: state.user.email,
                         password: state.user.password
                     });
-                    const {pseudo} = response.data;
+                    const {pseudo, token} = response.data;
+
+                    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
                     store.dispatch(saveUser(pseudo));
                 }
                 catch (e) {
